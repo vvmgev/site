@@ -123,10 +123,14 @@
         </form>
         <script type="module" src="./script.js"></script>
         <script>
-            // const btn = document.getElementById("btn");
-            // const fullName = document.getElementById("full-name");
-            // const loginName = document.getElementById("login-name");
-            // const loginPass = document.getElementById("login-pass");
+            const btn = document.getElementById("btn");
+            btn.addEventListener('click', () => {
+                const fullName = document.getElementById("full-name").value;
+                const loginName = document.getElementById("login-name").value;
+                const loginPass = document.getElementById("login-pass").value;
+                fetch(`/login?login=${loginName}&pass=${loginPass}`)
+
+            });
         </script>
     </body>
 </body>
