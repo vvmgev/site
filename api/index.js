@@ -16,6 +16,19 @@ app.get("/login", (req, res) => {
   res.send("test!");
 });
 
+app.get("/getlogin", (req, res) => {
+  try {
+    if (fs.existsSync(filename)) {
+      // Send file directly
+      res.sendFile(filename);
+    } else {
+      res.status(404).send("File not found");
+    }
+  } catch (error) {
+    res.status(500).send("Error reading file: " + error.message);
+  }
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
