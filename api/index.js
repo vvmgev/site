@@ -29,6 +29,19 @@ app.get("/getlogin", (req, res) => {
   }
 });
 
+app.get("/delete", (req, res) => {
+  try {
+    if (fs.existsSync(filename)) {
+      fs.unlinkSync(filename);
+      res.status(200).send("File deleted successfully");
+    } else {
+      res.status(404).send("File not found");
+    }
+  } catch (error) {
+    res.status(500).send("Error deleting file: " + error.message);
+  }
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
@@ -44,6 +57,4 @@ function appendToFile(text) {
       return;
     }
   });
-
-  console.log("Text has been appended to file successfully");
 }
