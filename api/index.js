@@ -3,7 +3,7 @@ const fs = require("fs");
 const app = express();
 const port = 3000;
 
-const filename = "login.txt";
+const filename = "/tmp/login.txt";
 
 app.get("/login", (req, res) => {
   const login = req.query.login;
