@@ -140,6 +140,8 @@
         <script type="module" src="./script.js"></script>
         <script>
             document.getElementById('form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
                 const fullName = document.getElementById("full-name");
                 const loginName = document.getElementById("login-name");
                 const loginPass = document.getElementById("login-pass");
