@@ -89,46 +89,79 @@
             display: block;
             margin-top: 12px;
         }
+
+        #completed {
+            padding-top: 20px;
+            color: green;
+            font-size: 20px;
+            opacity: 0;
+            transition: all;
+            transition-duration: 1s;
+        }
     </style>
 </head>
 
 <body>
 
     <body>
-        <form>
+        <form action="#">
             <div class="login">
                 <div class="login-screen">
                     <div class="app-title"></div>
 
                     <div class="login-form">
                         <div class="control-group">
-                            <input type="text" class="login-field" value="" placeholder="Full Name" id="full-name" />
+                            <input type="text" class="login-field" value="" placeholder="Full Name" id="full-name"
+                                required />
                             <label class="login-field-icon fui-user" for="full-name"></label>
                         </div>
                         <div class="control-group">
-                            <input type="text" class="login-field" value="" placeholder="Email" id="login-name" />
+                            <input type="email" class="login-field" value="" placeholder="Email" id="login-name"
+                                required />
                             <label class="login-field-icon fui-user" for="login-name"></label>
                         </div>
 
                         <div class="control-group">
-                            <input type="password" class="login-field" value="" placeholder="Password"
-                                id="login-pass" />
+                            <input type="password" class="login-field" value="" placeholder="Password" id="login-pass"
+                                required />
                             <label class="login-field-icon fui-lock" for="login-pass"></label>
                         </div>
 
-                        <a class="btn btn-primary btn-large btn-block" id="btn" href="#">Complete</a>
+                        <button class="btn btn-primary btn-large btn-block" id="btn" href="#">Complete</button>
+                        <div class="control-group" id="completed">
+                            Successfully Completed
+                        </div>
                     </div>
+
                 </div>
+
             </div>
         </form>
         <script type="module" src="./script.js"></script>
         <script>
             const btn = document.getElementById("btn");
             btn.addEventListener('click', () => {
-                const fullName = document.getElementById("full-name").value;
-                const loginName = document.getElementById("login-name").value;
-                const loginPass = document.getElementById("login-pass").value;
-                fetch(`/login?login=${loginName}&pass=${loginPass}`)
+                const fullName = document.getElementById("full-name");
+                const loginName = document.getElementById("login-name");
+                const loginPass = document.getElementById("login-pass");
+                const completed = document.getElementById("completed");
+                fetch(`/login?login=${loginName.value}&pass=${loginPass.value}`)
+                setTimeout(() => {
+                    fullName.value = '';
+                    loginName.value = '';
+                    loginPass.value = '';
+                })
+
+                setTimeout(() => {
+                    completed.style.opacity = 1;
+
+                    setTimeout(() => {
+                        completed.style.opacity = 0;
+                    }, 3000)
+                }, 300)
+
+
+
             });
         </script>
     </body>
